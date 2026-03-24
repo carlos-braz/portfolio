@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Carlos' Page</title>
+        <link type="text/css" href="nav.css" rel="stylesheet">
+    </head>
+    <body>
+      <div class="menu-barra" >
+        <a href="index.html" title="Página Inicial" class="menu-moldura" style="text-align: center;">
+            Início
+        </a>
+        <a href="sobre-mim.html" title="Sobre min" class="menu-moldura" style="text-align: center;">
+            Artigos
+        </a>
+        <a href="formacao.html" title="Formação" class="menu-moldura" style="text-align: center;">
+            Formação
+        </a>
+        <a href="portfolio.html" title="Portfólio" class="menu-moldura" style="text-align: center;">
+            Portfólio
+        </a>
+        <a href="contato.html" title="Contato" class="menu-moldura m-ativo" style="text-align: center;">
+            Contato
+        </a>
+      </div>
+    <div class="clearfix"></div>
+    <div class="corpo">
+      <h1>Contato</h1>
+      <form id="form-contato" class="formulario-contato">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="email">E-mail</label>
+        <input type="text" id="email" name="email" required>
+
+        <label for="empresa">Empresa</label>
+        <input type="text" id="empresa" name="empresa" required>
+
+        <label for="servico">Serviço desejado</label>
+        <select id="servico" name="servico" required>
+          <option value="">Selecione</option>
+          <option value="site-institucional">Site Institucional</option>
+          <option value="landing-page">Landing Page</option>
+          <option value="sistema-web">Sistema Web</option>
+          <option value="manutencao">Manutenção de Site</option>
+        </select>
+
+        <label for="mensagem">Detalhes do projeto</label>
+        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+        <p id="mensagem-status" class="mensagem-status"></p>
+        <button type="submit">Solicitar contrato</button>
+      </form>
+    </div>
+    <script type="text/javascript">
+      var formContato = document.getElementById("form-contato");
+      var campoEmail = document.getElementById("email");
+      var mensagemStatus = document.getElementById("mensagem-status");
+
+      formContato.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        var email = campoEmail.value;
+        var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        if (!emailValido) {
+          mensagemStatus.innerHTML = "Digite um e-mail valido.";
+          mensagemStatus.className = "mensagem-status erro";
+          campoEmail.focus();
+          return;
+        }
+
+        mensagemStatus.innerHTML = "Solicitacao enviada com sucesso.";
+        mensagemStatus.className = "mensagem-status sucesso";
+        formContato.reset();
+      });
+    </script>
+    </body>
+</html>
